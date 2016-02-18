@@ -24,26 +24,17 @@ public class Incident
 		case EventoCultural = 13
 		case Mercadillo = 14
 		case PodaArboles = 15
+        case OtrasCausas = 99
 		
 		/**
-			
+			Creamos el tipo de incidencia en 
+            al codigo que llega del feed
 
-			- parameter googleTransitCause: 
+			- parameter googleTransitCause: El codigo de la incidencia
 		*/
-		init?(googleTransitCause cause: String)
+		init?(googleTransitCause code: Int)
 		{
-			let range = Range<String.Index>(start: cause.startIndex, end: cause.startIndex.advancedBy(2))
-        
-	        if let 
-	            cadena: String = cause[range],
-	            numero = Int(cadena)
-	        {
-	            self.init(rawValue: numero)
-	        }
-	        else
-	        {
-	            return nil
-	        }
+            self.init(rawValue: code)
 		}
 	}
 
