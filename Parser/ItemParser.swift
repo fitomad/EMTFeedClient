@@ -114,7 +114,15 @@ extension ItemParser: NSXMLParserDelegate
 				case ItemTag.AfectaHasta:
 					self.incident.effectEnd = NSDate(rssStringFormat: string_value)
                 case ItemTag.GoogleTransitCause:
-					self.incident.cause = Incident.CauseType(googleTransitCause: string_value)
+                    let range = Range<String.Index>(start: string_value.startIndex, end: string_value.startIndex.advancedBy(2))
+                    let cadena: String = string_value[range]
+                    
+                    if let
+                        numero = Int(cadena),
+                        cause = Incident.CauseType(googleTransitCause: numero)
+                    {
+                        self.incident.cause = cause
+                    }
 				case ItemTag.Category:
 					self.categories.append(string_value)
 	            default:
